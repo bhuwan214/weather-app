@@ -14,3 +14,21 @@
 // }
 // getNews()
 
+
+//  async function getWeather(){
+// try{
+//     const weatherData = await fetch("https://api.weatherapi.com/v1/current.json?key=1650213131b14dca81c30209241806&q=butwal")
+//    const weatherInfo =await weatherData.json()
+// console.log( weatherInfo)
+// }
+// catch{
+//    console.log("Can't fetch the data")
+// }
+
+//    }
+
+//    setTimeout(getWeather(),1000)
+
+
+
+//Setting the day
