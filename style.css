@@ -232,15 +232,26 @@ gap: 25px;
     align-items: center;
 
 }
-
-.after >.temp, .after-day{
+.after-day{
+    padding: 3px;
+    text-transform: capitalize;
+    font-size: min(1.6vw,20px);
+}
+.after >.temp{
     font-size: 25px;
-    text-transform: capitalize}
     
+}
+
 .after >.emoji{
     font-size: 80px;
 }
 
+hr{
+width:90%;
+color: black;
+border: solid 1px rgb(161, 190, 208);
+
+}
 
 
 
@@ -262,6 +273,7 @@ gap: 25px;
    .after{
     width: 10vw;
    }
+  
 
 }
 
@@ -285,9 +297,18 @@ width: 220px;
 height: 300px;
 border-radius: px;
 
-
+   }
+   .after-day{
+    font-size: min(10vw,30px);
    }
    .main-data{
     font-size: 90px;
+}
+
+.after >.emoji{
+    font-size:100px;
+}
+.after>.temp{
+    font-size: 40px;
 }
 }

@@ -17,17 +17,29 @@
 
 //  async function getWeather(){
 // try{
-//     const weatherData = await fetch("https://api.weatherapi.com/v1/current.json?key=1650213131b14dca81c30209241806&q=butwal")
+//     const weatherData = await fetch("https://api.weatherapi.com/v1/current.json?key=1650213131b14dca81c30209241806&q=iceland&")
 //    const weatherInfo =await weatherData.json()
 // console.log( weatherInfo)
 // }
 // catch{
 //    console.log("Can't fetch the data")
 // }
+//   }
 
+//   async function fetchForecaste(){
+//    try{ 
+     
+//       const weatherForecast =await fetch("http://api.weatherapi.com/v1/future.json?key=1650213131b14dca81c30209241806&q=London&dt=2024-07-24" ,{mode:"cors"})
+//    const forecast =await weatherForecast;
+//    console.log(forecast);
 //    }
-
+//    catch{
+//       console.log("DIDn't get anything..")
+//    }
+//   }
 //    setTimeout(getWeather(),1000)
+
+//    fetchForecaste()
 
 
 

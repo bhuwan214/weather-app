@@ -1,24 +1,4 @@
 const after =document.querySelectorAll(".after")
-
-
-
-after.forEach(element => {
-    // element.style.backgroundColor="red"
-});
-
-function presentdata(say,time,temp,feel,humidity,windspeed){}
-
-
- function blocks(date,temp,emoji){
-    this.date=date;
-    this.temp=temp;
-    this.emoji=emoji;
-
-}
-
-const first_block = new blocks("10-20","20'","☀️")
-// console.log(first_block)
-
 //Getting the date data and Setting the data
 
 let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday"]
@@ -32,5 +12,28 @@ let date =now.getDate()
 document.querySelector(".dateData").innerHTML=`${date}, ${months[month]}`;
 document.querySelector(".dayData").innerHTML = days[day]
 
+after.forEach(element => {
+    element.querySelector(".after-day").innerHTML = days[(++day)%7]
+    
+});
+
+ function blocks(date,temp,emoji){
+    this.date=date;
+    this.temp=temp;
+    this.emoji=emoji;
+
+}
+
+const first_block = new blocks("10-20","20'","☀️")
+// console.log(first_block)
 
 
+
+function emojiSelection(icon){
+switch(icon){
+    case partly-cloud:"⛅"
+    
+}
+
+
+}
