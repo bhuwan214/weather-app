@@ -1,40 +1,3 @@
-//Getting the news for the page
-
-// async  function getNews(){
-//     try{
-//     const news = await fetch("https://newsapi.org/v2/everything?q=weather&from=2024-06-22&sortBy=popularity&apiKey=cca101db7fdf4a5e844f3f740bd75c3e",{mode:'cors',mehod:"GET"})
-//     const newsInfo =await news.json()
-//     console.log(newsInfo.articles)
-// }
-// catch(error){
-//     console.log("Can't fetch the data")
-// }
-
-
-// }
-// getNews()
-
-
-//  async function getWeather(){
-// try{
-//     const weatherData = await fetch("https://api.weatherapi.com/v1/current.json?key=1650213131b14dca81c30209241806&q=iceland&days=7")
-//    const weatherInfo =await weatherData.json()
-// console.log( weatherInfo)
-// }
-// catch{
-//    console.log("Can't fetch the data")
-// }
-//   }
-//   setTimeout(getWeather(),1000)
-//Setting the day
-// https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=minutely,alerts&units=${units}&appid=20f7632ffc2c022654e4093c6947b4f4`
-
-
-
-
-
-
-
 
 
 const after =document.querySelectorAll(".after")
@@ -68,41 +31,68 @@ const first_block = new blocks("10-20","20'","☀️")
 
 
 // Search for the City using user input
+function getCityName() {
+   const input = document.querySelector('.search-box');
+   const cityName = input.value.trim();
+   return cityName;
+}
+function buildWeatherUrl(cityName) {
+    const apiKey = '8aa8d76f16200d8c5d2282e6f38cebc3'; // Replace 'YOUR_API_KEY' with your actual API key
+    return `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
+}
 
- function getCityName(){
-    let city=document.querySelector(".searching")
-    let cityName=city.value.trim();
-return cityName
+// Function to fetch weather data
+async function fetchWeatherData(cityName) {
+   const url = buildWeatherUrl(cityName);
+   try {
+      let searchPara = document.querySelector(".search-field > p")
+       const response = await fetch(url);
+       if (response.ok) {
+           const data = await response.json();
+           displayWeatherData(data);
+          searchPara.innerHTML= ""
 
- }
- console.log(getCityName())
+       } else {
 
-
-
-
- async function fetchForecaste(){
-    const city =getCityName()
-    try{ 
-      
-       const weatherForecast =await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=8aa8d76f16200d8c5d2282e6f38cebc3`)
-    const forecast =await weatherForecast.json();
-    console.log(forecast);
-    const country = await forecast.sys
-   let tempCel =   await forecast.main.temp-273.15
- return Math.floor(tempCel)
-    }
-    catch{
-       console.log("DIDn't get anything..")
-    }
+       let searchPara = document.querySelector(".search-field > p")
+          searchPara.innerHTML= 'Did not get the city'
+       }
+   } catch (error) {
+       console.error('Error fetching the weather data:', error);
    }
- 
+}
+
+function displayWeatherData(data) {
+const presentTemp = document.querySelector(".main-data > .temp") 
+const tempK =data.main.temp
+console.log(tempK)
+const tempC = Math.floor((tempK - 273.15))
+console.log(tempC)
+presentTemp.innerHTML=tempC + "°"
+
+}
+
+
+
+// Handle Enter key press
+function handleEnterKey(event) {
+   if (event.key === 'Enter') {
+      let searchPara = document.querySelector(".search-field > p")
+
+       const cityName = getCityName();
+       if (cityName) {
+         searchPara.innerHTML=""
+           fetchWeatherData(cityName);
+
+       } else {
+         searchPara.innerHTML= 'Please enter a city name'
+       }
+   }
+}
+
+
+const searchBoxInput = document.querySelector('.search-box');
+searchBoxInput.addEventListener('keydown', handleEnterKey);
  
 
- async function setTemp() {
-   let temp= await fetchForecaste() 
-//  
  
-  document.querySelector(".main-data > .temp").innerHTML=temp+"°c"
-
- }
- setTemp()
