@@ -49,7 +49,9 @@ async function fetchWeatherData(cityName) {
        const response = await fetch(url);
        if (response.ok) {
            const data = await response.json();
+           console.log(data)
            displayWeatherData(data);
+           displayLocationOnHead(data);
           searchPara.innerHTML= ""
 
        } else {
@@ -73,7 +75,6 @@ presentTemp.innerHTML=tempC + "°"
 }
 
 
-
 // Handle Enter key press
 function handleEnterKey(event) {
    if (event.key === 'Enter') {
@@ -90,6 +91,16 @@ function handleEnterKey(event) {
    }
 }
 
+
+function displayLocationOnHead(data){
+let country = data.name;
+let city =data.sys.country;
+
+
+document.querySelector(".location > .city").innerHTML=city;
+document.querySelector(".location > .country").innerHTML=country;
+
+}
 
 const searchBoxInput = document.querySelector('.search-box');
 searchBoxInput.addEventListener('keydown', handleEnterKey);
